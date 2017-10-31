@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-class SearchScreen extends Component {
+class BarcodeScanScreen extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: 'Barcode',
+        tabBarIcon: ({ tintColor }) => {
+            return (
+                <Icon
+                    name="barcode" 
+                    size={30} 
+                    color={tintColor} 
+                /> 
+            );
+        },
+    })
+
     render() {
         return (
             <View style={styles}>
@@ -17,4 +32,4 @@ const styles = {
     justifyContent: 'center',
 }
 
-export default SearchScreen;
+export default BarcodeScanScreen;

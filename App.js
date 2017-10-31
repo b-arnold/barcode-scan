@@ -29,10 +29,15 @@ export default class App extends React.Component {
             tabBarPosition: 'bottom',
             tabBarOptions: {
             labelStyle: { fontSize: 12 }
-            }
+          }
         })
       }
-    })
+    }, {
+      navigationOptions: {
+        tabBarVisible: false
+      },
+      lazy: true
+    });
   
     return (
         <View style={styles.container}>
