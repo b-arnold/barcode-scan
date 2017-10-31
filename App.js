@@ -17,8 +17,16 @@ export default class App extends React.Component {
       welcome: { screen: WelcomeScreen },
       main: {
         screen: TabNavigator({
-          search: { screen: SearchScreen },
-          barcode: { screen: BarcodeScanScreen },
+          search: { 
+            screen: StackNavigator({
+            search: { screen: SearchScreen }
+          }) 
+        },
+          barcode: { 
+            screen: StackNavigator({
+            barcode: { screen: BarcodeScanScreen }
+          }) 
+        },
           profile: {
             screen: StackNavigator({
               profile: { screen: ProfileScreen },

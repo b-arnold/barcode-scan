@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { Button, Icon, Header } from 'react-native-elements';
 
 class SearchScreen extends Component {
+    
     static navigationOptions = ({ navigation }) => ({
         title: 'Search',
+        headerLeft: null,
+
         tabBarIcon: ({ tintColor }) => {
             return (
                 <Icon 
