@@ -10,8 +10,6 @@ import SearchScreen from './screens/SearchScreen';
 import BarcodeScanScreen from './screens/BarcodeScanScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import AuthScreen from './screens/AuthScreen';
-import SignUpScreen from './screens/SignUpScreen';
 
 export default class App extends React.Component {
   
@@ -21,40 +19,8 @@ export default class App extends React.Component {
     this.state = {component: null, loaded: false}
   }
 
-  // componentWillMount() {
-  //   firebase.initializeApp(
-  //     {
-  //       apiKey: "AIzaSyChWClzpiZjGa_7tswq-s0PufdcaHkNHw4",
-  //       authDomain: "barcode-9fa69.firebaseapp.com",
-  //       databaseURL: "https://barcode-9fa69.firebaseio.com",
-  //       projectId: "barcode-9fa69",
-  //       storageBucket: "barcode-9fa69.appspot.com",
-  //       messagingSenderId: "852345883710"
-  //     }
-  //   );
-
-  //   AsyncStorage.getItem(userData).then((userData_json) =>
-  //   {
-  //     let userData = JSON.parse(userData_json);
-  //     let component = { component: SignUpScreen };
-  //     if (userData !== null)
-  //     {
-  //       app.authWithCustomToken(userData.token, (error, authData) => {
-  //         if (error){
-  //           this.setState(component);
-  //         } else {
-  //           this.setState({component: Account});
-  //         }
-  //       });
-  //     } else {
-  //       this.setState(component)
-  //     }
-  //   });
-  // }
-
   render() {
     const MainNavigator = TabNavigator({
-      auth: { screen: AuthScreen },
       welcome: { screen: WelcomeScreen },
       main: {
         screen: TabNavigator({
