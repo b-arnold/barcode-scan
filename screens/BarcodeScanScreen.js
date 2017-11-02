@@ -3,7 +3,11 @@ import { Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+////////////////////////////////////////////////////////////////////////
+// Class for scanning barcode of Food product
 class BarcodeScanScreen extends Component {
+    
+    // Navigation/Header for BarcodeScanScreen
     static navigationOptions = ({ navigation }) => ({
         title: 'Barcode',
         tabBarIcon: ({ tintColor }) => {
@@ -26,6 +30,8 @@ class BarcodeScanScreen extends Component {
     }
 }
 
+////////////////////////////////////////////////////////////////////////
+// Styling for BarcodeScanScreen
 const styles = {
     flex: 1,
     alignItems: 'center',

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Text, View, Platform } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
+////////////////////////////////////////////////////////////////////////
+// Class for the User's profile
 class ProfileScreen extends Component {
+    
+    // Navigation/Header for Profile screen
     static navigationOptions = ({ navigation }) => ({
         title: 'Profile',
         tabBarIcon: ({ tintColor }) => {
@@ -12,7 +16,7 @@ class ProfileScreen extends Component {
             <Button
                 large
                 iconRight={{ name: "settings", color:"black"}}
-                onPress={() => navigation.navigate('settings')}
+                onPress={() => navigation.navigate('settings')} //Navigate to settings
                 backgroundColor="rgba(0,0,0,0)"
                 color="black"
             />
@@ -30,6 +34,8 @@ class ProfileScreen extends Component {
     }
 }
 
+////////////////////////////////////////////////////////////////////////
+// Styling for ProfileScreen
 const styles = {
     flex: 1,
     alignItems: 'center',

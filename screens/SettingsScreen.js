@@ -1,8 +1,17 @@
+import { NavigationActions } from 'react-navigation';
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { View } from 'react-native';
+import firebase from 'firebase';
+import { Icon, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../src/actions';
+import { Spinner } from '../src/components/common/Spinner';
 
-class SearchScreen extends Component {
+////////////////////////////////////////////////////////////////////////
+// Class for Updating settings of Barcode-scan
+class SettingsScreen extends Component {
+
+    // Navigation/Header for Settings screen
     static navigationOptions = ({ navigation }) => ({
         title: 'Settings',
         
@@ -10,20 +19,31 @@ class SearchScreen extends Component {
             return <Icon name="settings" size={30} color={tintColor} />;
         }
     })
-    
+
+    onButtonPress = () => {
+          this.props.navigation.navigate("signout"); // Passing a callback function
+    };
+
+    //////////////////////////////////////////////////////////////////////////////////
+    // Main render method
     render() {
         return (
             <View style={styles}>
-                <Text>Settings Screen!</Text>
+                <Button 
+                    title="Sign Out"
+                    icon={{ name: 'close' }}
+                    onPress={this.onButtonPress}
+                />
             </View>
         );
     }
 }
 
+////////////////////////////////////////////////////////////////////////
+// Styling for Settings screen
 const styles = {
-    flex: 1,
-    alignItems: 'center',
+    marginTop: 30,
     justifyContent: 'center',
 }
 
-export default SearchScreen;
+export default SettingsScreen;

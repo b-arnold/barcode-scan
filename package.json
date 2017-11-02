@@ -6,6 +6,7 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
+    "babel-preset-react-native": "^2.1.0",
     "expo": "^22.0.0",
     "firebase": "^4.6.0",
     "lodash": "^4.17.4",
@@ -17,7 +18,7 @@
     "react-navigation": "^1.0.0-beta.15",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-persist": "^5.1.0",
+    "redux-persist": "^4.8.2",
     "redux-thunk": "^2.2.0"
   }
 }
