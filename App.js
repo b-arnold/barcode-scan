@@ -18,6 +18,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import AuthScreen from './screens/AuthScreen';
 import SignoutScreen from './screens/SignoutScreen';
+import BarcodeScanner from './screens/BarcodeScanner';
 
 export default class App extends React.Component {
 
@@ -35,11 +36,16 @@ componentWillMount() {
     const MainScreens = TabNavigator(
       {
         search: { screen: StackNavigator({ search: { screen: SearchScreen }})},
-        barcode: { screen: StackNavigator({ barcode: { screen: BarcodeScanScreen }})},
+        barcode: { screen: StackNavigator(
+          { barcode: { screen: BarcodeScanScreen }, barcodeScan: { screen: BarcodeScanner }
+        })},
         profile: { screen: StackNavigator({ 
           profile: { screen: ProfileScreen }, settings: { screen: SettingsScreen }
-        })}
-      }
+        })}  
+      },
+        {
+          swipeEnabled: true
+        }
     );
    
     ////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button, Icon, Header } from 'react-native-elements';
+import { Button, Icon, Header, FormLabel, FormInput } from 'react-native-elements';
 
 ////////////////////////////////////////////////////////////////////////
 // Class for searching for food to save to Profile
 class SearchScreen extends Component {
     
+    state = { search: true };
+
     // Navigation/Header for Search screen
     static navigationOptions = ({ navigation }) => ({
         title: 'Search',
@@ -23,11 +25,26 @@ class SearchScreen extends Component {
     })
     
     render() {
-        return (
-            <View style={styles}>
-                <Text>Search Screen!</Text>
-            </View>
-        );
+        if(this.state.search)
+        {
+            return (
+                <View>
+                    <View style={{ marginTop: 30 }}>
+                        <FormLabel>Food Search</FormLabel>
+                        <FormInput 
+                            placeholder="Barbecue chips"
+                        />
+                    </View>
+
+                    <View style={{ marginTop: 30 }}>
+                        <Button 
+                            title="Search"
+                            icon={{ name: "search" }}
+                        />
+                    </View>
+                </View>
+            );
+        }
     }
 }
 
