@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { AsyncStorage, StyleSheet, Text, View, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { BarCodeScanner, Permissions } from 'expo';
 import { connect } from 'react-redux';
@@ -15,7 +15,8 @@ import BarcodeScanScreen from './BarcodeScanScreen';
 class BarcodeScanner extends Component {
   
   state = {
-    hasCameraPermission: null
+    hasCameraPermission: null,
+    foodUPC: ''
   }
 
   static navigationOptions = {
@@ -29,8 +30,16 @@ class BarcodeScanner extends Component {
     this.setState({hasCameraPermission: status === 'granted'});
   }
 
+  removeFirstZero = ( data ) => {
+    var str = data;
+    str = str.substring(1);
+    //console.log(str);
+    return str;
+  }
+
   render() {
-    const { hasCameraPermission } = this.state;
+
+    const { hasCameraPermission, foodUPC } = this.state;
 
     if (hasCameraPermission === null) {
       return <Text>Requesting for camera permission</Text>;
@@ -56,10 +65,16 @@ class BarcodeScanner extends Component {
   }
 
   _handleBarCodeRead = ({ type, data }) => {
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     this.setState({hasCameraPermission: null})
     this.props.firstScanChanged(false);
-    //console.log(this.props.scan);
+
+    var UPC = this.removeFirstZero(data);
+    this.props.getFoodUPC(UPC);
+    this.props.fetchFoodDetails(UPC);
+    
+    //console.log(this.props.food);
+    
     this.props.navigation.navigate("barcode");
   }
 
@@ -80,7 +95,9 @@ const styles = {
 // Map redux reducers to component props.
 function mapStateToProps({ barcode }) {
   return {
-    scan: barcode.scan
+    scan: barcode.scan,
+    upc: barcode.upc,
+    food: barcode.food
   };
 }
 

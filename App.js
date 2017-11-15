@@ -19,6 +19,8 @@ import SettingsScreen from './screens/SettingsScreen';
 import AuthScreen from './screens/AuthScreen';
 import SignoutScreen from './screens/SignoutScreen';
 import BarcodeScanner from './screens/BarcodeScanner';
+import FoodInfoScreen from './screens/FoodInfoScreen';
+import CompareFoodScreen from './screens/CompareFoodScreen';
 
 export default class App extends React.Component {
 
@@ -37,7 +39,8 @@ componentWillMount() {
       {
         search: { screen: StackNavigator({ search: { screen: SearchScreen }})},
         barcode: { screen: StackNavigator(
-          { barcode: { screen: BarcodeScanScreen }, barcodeScan: { screen: BarcodeScanner }
+          { barcode: { screen: BarcodeScanScreen }, barcodeScan: { screen: BarcodeScanner }, 
+          foodInfo: { screen: FoodInfoScreen }, compareFood: { screen: CompareFoodScreen }
         })},
         profile: { screen: StackNavigator({ 
           profile: { screen: ProfileScreen }, settings: { screen: SettingsScreen }
