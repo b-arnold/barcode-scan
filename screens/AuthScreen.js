@@ -18,7 +18,7 @@ class AuthScreen extends Component {
 
         // Checks if User is logged in --> if logged in, navigates to main
         if(firebase.auth().currentUser){
-            return this.props.navigation.navigate('search')
+            return this.props.navigation.navigate('barcode')
         }
 
         // Listen for authentication state to change
@@ -29,7 +29,7 @@ class AuthScreen extends Component {
 
             if (user) {
                 // Navigate to main page
-                this.props.navigation.navigate('search');
+                this.props.navigation.navigate('barcode');
                 return;
             }
 

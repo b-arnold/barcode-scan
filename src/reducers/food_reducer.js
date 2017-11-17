@@ -1,13 +1,17 @@
 import {
     FIRST_SCAN_CHANGED,
     GET_FOOD_UPC,
-    FETCH_FOOD_DETAILS
+    FETCH_FOOD_DETAILS,
+    FETCH_COMPARE_DETAILS,
+    FETCH_FOOD_ID_DETAILS
 } from '../actions/types'
 
 const INITIAL_STATE = {
     scan: true,
     upc: '',
-    food: null
+    food: null,
+    compare: null,
+    foodId: null,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -19,6 +23,10 @@ export default function (state = INITIAL_STATE, action) {
         case FETCH_FOOD_DETAILS:
             //console.log(action.payload);
             return { ...state, food: action.payload };
+        case FETCH_COMPARE_DETAILS:
+            return { ...state, compare: action.payload };
+        case FETCH_FOOD_ID_DETAILS:
+            return { ...state, foodId: action.payload };
         default:
             return state;
     }

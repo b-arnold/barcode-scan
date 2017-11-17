@@ -37,7 +37,7 @@ componentWillMount() {
     // (StackNavigator is used strictly for styling purposes)
     const MainScreens = TabNavigator(
       {
-        search: { screen: StackNavigator({ search: { screen: SearchScreen }})},
+        //search: { screen: StackNavigator({ search: { screen: SearchScreen }})},
         barcode: { screen: StackNavigator(
           { barcode: { screen: BarcodeScanScreen }, barcodeScan: { screen: BarcodeScanner }, 
           foodInfo: { screen: FoodInfoScreen }, compareFood: { screen: CompareFoodScreen }

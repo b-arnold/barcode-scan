@@ -72,6 +72,7 @@ class BarcodeScanner extends Component {
     var UPC = this.removeFirstZero(data);
     this.props.getFoodUPC(UPC);
     this.props.fetchFoodDetails(UPC);
+    this.props.fetchCompareDetails(UPC);
     
     //console.log(this.props.food);
     
@@ -93,11 +94,12 @@ const styles = {
 
 //////////////////////////////////////////////////////////////////////////////////
 // Map redux reducers to component props.
-function mapStateToProps({ barcode }) {
+function mapStateToProps({ food }) {
   return {
-    scan: barcode.scan,
-    upc: barcode.upc,
-    food: barcode.food
+    scan: food.scan,
+    upc: food.upc,
+    food: food.food,
+    compare: food.compare
   };
 }
 

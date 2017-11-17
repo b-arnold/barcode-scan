@@ -6,17 +6,27 @@ import firebase from 'firebase';
 import { 
     FIRST_SCAN_CHANGED,
     GET_FOOD_UPC,
-    FETCH_FOOD_DETAILS
+    FETCH_FOOD_DETAILS,
+    FETCH_COMPARE_DETAILS,
+    FETCH_FOOD_ID_DETAILS
 } from './types';
 
-const FOOD_ROOT_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/upc/";
+const FOOD_ROOT_URL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/";
 const FOOD_HEADERS = {
     headers: {"X-Mashape-Key": "K1Gjrpp6ramshdkdbXnBqcuDGC5Ap12Fu4fjsnrLnCgBirklvr",
     "X-Mashape-Host": "spoonacular-recipe-food-nutrition-v1.p.mashape.com"}
 };
 
 const buildFoodURL = (upc) => {
-    return `${FOOD_ROOT_URL}${upc}`;
+    return `${FOOD_ROOT_URL}upc/${upc}`;
+}
+
+const buildCompareURL = (upc) => {
+    return `${FOOD_ROOT_URL}upc/${upc}/comparable`;
+}
+
+const buildFoodIdURL = (id) => {
+    return `${FOOD_ROOT_URL}${id}`;
 }
 
 ////////////////////////////////////////////////////////////////
@@ -47,6 +57,32 @@ export const fetchFoodDetails = upc => async (dispatch) => {
         //console.log(food);
 
         dispatch({ type: FETCH_FOOD_DETAILS, payload: data });
+    } catch(err) {
+        console.log(err);
+    }
+};
+
+export const fetchCompareDetails = upc => async (dispatch) => {
+    
+    try {
+        const url = buildCompareURL(upc);
+        let { data }  = await axios.get( url, FOOD_HEADERS);
+        //console.log(food);
+    
+        dispatch({ type: FETCH_COMPARE_DETAILS, payload: data });
+    } catch(err) {
+        console.log(err);
+    }
+};
+
+export const fetchFoodIdDetails = id => async (dispatch) => {
+    
+    try {
+        const url = buildFoodIdURL(id);
+        let { data }  = await axios.get( url, FOOD_HEADERS);
+        //console.log(food);
+    
+        dispatch({ type: FETCH_FOOD_ID_DETAILS, payload: data });
     } catch(err) {
         console.log(err);
     }

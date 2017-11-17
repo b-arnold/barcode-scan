@@ -23,8 +23,7 @@ class BarcodeScanScreen extends Component {
 
     state = {
         firstScan: true, 
-        foodUPC: null,
-        seeMore: false 
+        foodUPC: null
     };
  
 
@@ -71,11 +70,12 @@ class BarcodeScanScreen extends Component {
             //console.log("Goes here")
             
             return (
-                <View style={styles.mainContainer}>
+                <View style={{flex: 1, justifyContent: 'center', marginLeft: 10, marginRight: 10}}>
                     <Button 
                         title="Scan Bardcode"
                         icon={{ name: 'crop-free'}}
                         onPress={this.onButtonPress}
+                        backgroundColor='#2F4F4F'
                     />
                 </View>
             );
@@ -149,11 +149,12 @@ const styles = {
 
 //////////////////////////////////////////////////////////////////////////////////
 // Map redux reducers to component props.
-function mapStateToProps({ barcode }) {
+function mapStateToProps({ food }) {
     return {
-      scan: barcode.scan,
-      upc: barcode.upc,
-      food: barcode.food
+      scan: food.scan,
+      upc: food.upc,
+      food: food.food,
+      check: food.check
     };
 }
 
