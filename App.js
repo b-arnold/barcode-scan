@@ -12,7 +12,7 @@ import store from "./src/store";
 ////////////////////////////////////////////////////////////////////////
 // List of screens imported
 import WelcomeScreen from './screens/WelcomeScreen';
-import SearchScreen from './screens/SearchScreen';
+import BuyScreen from './screens/BuyScreen';
 import BarcodeScanScreen from './screens/BarcodeScanScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -40,10 +40,11 @@ componentWillMount() {
         //search: { screen: StackNavigator({ search: { screen: SearchScreen }})},
         barcode: { screen: StackNavigator(
           { barcode: { screen: BarcodeScanScreen }, barcodeScan: { screen: BarcodeScanner }, 
-          foodInfo: { screen: FoodInfoScreen }, compareFood: { screen: CompareFoodScreen }
+          foodInfo: { screen: FoodInfoScreen }, settings: { screen: SettingsScreen }, buy: { screen: BuyScreen }
         })},
-        profile: { screen: StackNavigator({ 
-          profile: { screen: ProfileScreen }, settings: { screen: SettingsScreen }
+        compare: { screen: StackNavigator({ 
+          compareFood: { screen: CompareFoodScreen }, foodInfo: { screen: FoodInfoScreen },
+          buy: { screen: BuyScreen }
         })}  
       },
         {
@@ -55,7 +56,6 @@ componentWillMount() {
     // Render Main Navigation of Barcode-Scan
     const MainNavigator = TabNavigator({
       auth: { screen: AuthScreen },
-      welcome: { screen: WelcomeScreen }, // open with welcome slides
       main: { screen: MainScreens },
       signout: { screen: SignoutScreen }
     },

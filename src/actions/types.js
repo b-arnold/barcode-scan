@@ -13,6 +13,9 @@ export const RESET_APP_STATE = "reset_app_state";
 
 export const FIRST_SCAN_CHANGED = "first_scan_changed";
 export const GET_FOOD_UPC = "get_food_upc";
+export const FOOD_ID_CHECK = "food_id_check";
 export const FETCH_FOOD_DETAILS = "fetch_food_details";
 export const FETCH_COMPARE_DETAILS = "fetch_compare_details";
 export const FETCH_FOOD_ID_DETAILS = "fetch_food_id_details";
+
+export const LIKE_FOOD = "like_food";

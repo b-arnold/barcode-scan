@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Platform } from 'react-native';
+import { Text, View, Platform, ScrollView, Card, ListView } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import Accordion from 'react-native-collapsible/Accordion';
 
 ////////////////////////////////////////////////////////////////////////
 // Class for the User's profile
 class ProfileScreen extends Component {
-    
+
     // Navigation/Header for Profile screen
     static navigationOptions = ({ navigation }) => ({
         title: 'Profile',
@@ -24,7 +25,8 @@ class ProfileScreen extends Component {
         style: {
             marginTop: Platform.OS === 'android' ? 24 : 0
         }
-    })    
+    })
+
     render() {
         return (
             <View style={styles}>
@@ -40,6 +42,7 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: '#F8F8FF'
 }
 
 export default ProfileScreen;

@@ -4,7 +4,8 @@ import {
     StyleSheet, 
     Text, 
     View, 
-    Image, 
+    Image,
+    ScrollView,
     TouchableWithoutFeedback
 } from 'react-native';
 import { Button, Card } from 'react-native-elements';
@@ -36,6 +37,15 @@ class BarcodeScanScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Barcode',
         headerLeft: null,
+        headerRight: (
+            <Button
+                large
+                iconRight={{ name: "settings", color:"black"}}
+                onPress={() => navigation.navigate('settings')} //Navigate to settings
+                backgroundColor="rgba(0,0,0,0)"
+                color="black"
+            />
+        ),
         tabBarIcon: ({ tintColor }) => {
             return (
                 <Icon
@@ -51,16 +61,14 @@ class BarcodeScanScreen extends Component {
         this.props.navigation.navigate("barcodeScan"); // Passing a callback function
     };
 
-    onSaveRequest = () => {
-        this.props.navigation.navigate("profile");
+    onBuyRequest = () => {
+        this.props.foodIdCheck(false);
+        this.props.navigation.navigate("buy");
     };
 
     onInfoRequest = () => {
+        this.props.foodIdCheck(false);
         this.props.navigation.navigate("foodInfo");
-    };
-
-    onComparisonRequest = () => {
-        this.props.navigation.navigate("compareFood");
     };
 
     render() {
@@ -75,7 +83,7 @@ class BarcodeScanScreen extends Component {
                         title="Scan Bardcode"
                         icon={{ name: 'crop-free'}}
                         onPress={this.onButtonPress}
-                        backgroundColor='#2F4F4F'
+                        backgroundColor='#000080'
                     />
                 </View>
             );
@@ -87,42 +95,39 @@ class BarcodeScanScreen extends Component {
             else
             {
                 return (
-                    <View style={styles.mainContainer}>
-                        <Card title={FOOD.title}>
-                            <View style={{alignItems: 'center'}}>
-                                <Image 
-                                    source={{uri: FOOD.images[1]}}
-                                    style={{width: 300, height: 300}}
+                    <ScrollView>
+                        <View style={styles.mainContainer}>
+                            <Card title={FOOD.title}>
+                                <View style={{alignItems: 'center'}}>
+                                    <Image 
+                                        source={{uri: FOOD.images[1]}}
+                                        style={{width: 300, height: 300}}
+                                    />
+                                </View>
+                                <View style={styles.cardNavBar}>
+                                    <TouchableWithoutFeedback onPress={this.onInfoRequest}>
+                                        <View style={{alignItems: 'center', marginTop: 10 }}>
+                                            <Icon name='info-circle' size={30} color='black' activeOpacity={10} />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={this.onBuyRequest}>
+                                        <View style={{alignItems: 'center', marginTop: 10 }}>
+                                            <Icon name='usd' size={30} color='black' activeOpacity={10} />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </Card>
+                            
+                            <View style={{ marginTop: 20 }}>
+                                <Button 
+                                    title="Scan New Bardcode"
+                                    icon={{ name: 'crop-free'}}
+                                    onPress={this.onButtonPress}
+                                    backgroundColor='#000080'
                                 />
                             </View>
-                            <View style={styles.cardNavBar}>
-                                <TouchableWithoutFeedback onPress={this.onInfoRequest}>
-                                    <View style={{alignItems: 'center', marginTop: 10 }}>
-                                        <Icon name='info-circle' size={30} color='black' activeOpacity={10} />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <TouchableWithoutFeedback onPress={this.onComparisonRequest}>
-                                    <View style={{alignItems: 'center', marginTop: 10 }}>
-                                        <Icon name='exchange' size={30} color='black' activeOpacity={10} />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <TouchableWithoutFeedback onPress={this.onSaveRequest}>
-                                    <View style={{alignItems: 'center', marginTop: 10 }}>
-                                        <Icon name='star' size={30} color='black' activeOpacity={10} />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            </View>
-                        </Card>
-                        
-                        <View style={{ marginTop: 20 }}>
-                            <Button 
-                                title="Scan New Bardcode"
-                                icon={{ name: 'crop-free'}}
-                                onPress={this.onButtonPress}
-                                backgroundColor='#2F4F4F'
-                            />
                         </View>
-                    </View>
+                    </ScrollView>
                 );
             }
         }
@@ -134,7 +139,6 @@ class BarcodeScanScreen extends Component {
 const styles = {
     mainContainer: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center'
     },
     cardNavBar: {

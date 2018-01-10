@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { ScrollView, Text, View, Image, Platform, TouchableWithoutFeedback } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Spinner } from '../src/components/common/Spinner';
 import { connect } from 'react-redux';
 import * as actions from '../src/actions';
 
 class CompareFoodScreen extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        title: 'Other Options',
+        title: 'Compare',
+        headerLeft: null,
         tabBarIcon: ({ tintColor }) => {
             return (
                 <Icon
@@ -24,19 +26,29 @@ class CompareFoodScreen extends Component {
         }
     });
 
-    onSaveRequest = () => {
-        this.props.navigation.navigate("profile");
+    onBuyRequest = (id) => {
+        this.props.foodIdCheck(true);
+        this.props.fetchFoodIdDetails(id);
+        this.props.navigation.navigate("buy");
     };
 
-    onInfoRequest = () => {
-        // this.props.fetchFoodIdDetails(id);
+    onInfoRequest = (id) => {
+        this.props.foodIdCheck(true);
+        this.props.fetchFoodIdDetails(id);
         this.props.navigation.navigate("foodInfo");
     };
 
     render() {
         const COMPARE = this.props.compare;
         console.log(COMPARE);
-
+        if (COMPARE === null)
+            return (
+                <View style={styles.mainContainer}>
+                    <Text style={styles.textStyle}>No Food to Compare!</Text>
+                </View>
+            )
+        else
+        {
         const compareProducts = COMPARE.comparableProducts.calories.map((type)=>
             <Card key={type.id} title={type.title}>
                 <View style={{alignItems: 'center'}}>
@@ -46,14 +58,14 @@ class CompareFoodScreen extends Component {
                     />
                 </View>
                 <View style={styles.cardNavBar}>
-                    <TouchableWithoutFeedback onPress={this.onInfoRequest}>
+                    <TouchableWithoutFeedback onPress={() => this.onInfoRequest(type.id)}>
                         <View style={{alignItems: 'center', marginTop: 10 }}>
                             <Icon name='info-circle' size={30} color='black' activeOpacity={10} />
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={this.onSaveRequest}>
+                    <TouchableWithoutFeedback onPress={() => this.onBuyRequest(type.id)}>
                         <View style={{alignItems: 'center', marginTop: 10 }}>
-                            <Icon name='star' size={30} color='black' activeOpacity={10} />
+                            <Icon name='usd' size={30} color='black' activeOpacity={10} />
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
@@ -67,6 +79,7 @@ class CompareFoodScreen extends Component {
                 </View>
             </ScrollView>
         );
+    }
     }
 }
 
@@ -86,12 +99,18 @@ const styles = {
         marginRight: 40,
         marginLeft: 40,
         marginTop: 10
+    },
+    textStyle: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center'
     }
 }
 
 function mapStateToProps({ food }) {
     return {
       compare: food.compare,
+      check: food.check,
       food: food.food
     };
 }

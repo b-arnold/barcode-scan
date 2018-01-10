@@ -33,6 +33,7 @@ class SettingsScreen extends Component {
                     title="Sign Out"
                     icon={{ name: 'close' }}
                     onPress={this.onButtonPress}
+                    backgroundColor='#000080'
                 />
             </View>
         );

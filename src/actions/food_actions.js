@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import { 
     FIRST_SCAN_CHANGED,
     GET_FOOD_UPC,
+    FOOD_ID_CHECK,
+    LIKE_FOOD,
     FETCH_FOOD_DETAILS,
     FETCH_COMPARE_DETAILS,
     FETCH_FOOD_ID_DETAILS
@@ -47,6 +49,19 @@ export const getFoodUPC = upc => ({
     type: GET_FOOD_UPC,
     payload: upc
 });
+
+// Called to check if to show compare food info
+export const foodIdCheck = check => ({
+    type: FOOD_ID_CHECK,
+    payload: check
+});
+
+export const likeFood = (food) => {
+    return {
+        type: LIKE_FOOD,
+        payload: food
+    };
+};
 
 // Called to access the information based on the upc
 export const fetchFoodDetails = upc => async (dispatch) => {

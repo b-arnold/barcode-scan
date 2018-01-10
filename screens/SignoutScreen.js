@@ -41,7 +41,7 @@ class AuthScreen extends Component {
       if (user) {
         // Print out debug info
         console.log(`${user.email} still logged in?!?!?`);
-        this.props.navigation.navigate('search');
+        this.props.navigation.navigate('barcode');
 
         // Navigate to main page
         //this.props.navigation.navigate('main');
@@ -58,7 +58,7 @@ class AuthScreen extends Component {
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,
-          actions: [{ type: 'Navigate', routeName: 'profile' }]
+          actions: [{ type: 'Navigate', routeName: 'barcode' }]
         });
         this.props.navigation.navigate('auth');
       }

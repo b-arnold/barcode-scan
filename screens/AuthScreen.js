@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Image } from 'react-native';
 import firebase from 'firebase';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../src/actions';
 import { Spinner } from '../src/components/common/Spinner';
+
+const icon = '../assets/icon.png';
 
 class AuthScreen extends Component {
 
@@ -91,6 +93,7 @@ class AuthScreen extends Component {
             <View>
                 <Button
                     title="Sign Up"
+                    backgroundColor='#000080'
                     onPress={this.onStandardSignupButtonPress}
                 />
                 <View style={{ marginTop: 40 }}>
@@ -110,7 +113,7 @@ class AuthScreen extends Component {
                     <Button
                     title="Log In"
                     icon={{ name: 'vpn-key' }}
-                    //backgroundColor={PRIMARY_COLOR}
+                    backgroundColor='#000080'
                     onPress={this.onStandardLoginButtonPress}
                     />
                 </View>
@@ -135,7 +138,7 @@ class AuthScreen extends Component {
         if (this.state.inSignupMode) {
         return (
             <View style={{ marginBottom: 10 }}>
-            <FormLabel>Retype Password</FormLabel>
+            <FormLabel labelStyle={{ color: 'black'}}>Retype Password</FormLabel>
             <FormInput
                 placeholder="password"
                 secureTextEntry
@@ -163,8 +166,17 @@ class AuthScreen extends Component {
         }
         return (
         <View>
+             <View style={{alignItems: 'center', marginBottom: 15}}>
+                <Image 
+                    source={require('../assets/icon.png')}
+                    style={{width: 150, height: 150}}
+                />
+            </View>
+            <View style={{alignItems: 'center', marginBottom: 10}}>
+                <Text style={{fontWeight: 'bold', fontSize: 20}}>Welcome to FoodScan!</Text>
+            </View>
             <View style={{ marginBottom: 10 }}>
-            <FormLabel>E-mail</FormLabel>
+            <FormLabel labelStyle={{ color: 'black'}}>E-mail</FormLabel>
             <FormInput
                 placeholder="brett@email.com"
                 value={this.props.email}
@@ -173,7 +185,7 @@ class AuthScreen extends Component {
             </View>
 
             <View style={{ marginBottom: 10 }}>
-            <FormLabel>Password</FormLabel>
+            <FormLabel labelStyle={{ color: 'black'}}>Password</FormLabel>
             <FormInput
                 placeholder="password"
                 secureTextEntry
@@ -198,7 +210,11 @@ class AuthScreen extends Component {
     //////////////////////////////////////////////////////////////////////////////////
     // Main render method
     render() {
-        return <View style={styles.mainContainer}>{this.renderContent()}</View>;
+        return (
+        <View style={styles.mainContainer}>
+            {this.renderContent()}
+        </View>
+        );
     }
 }
 
